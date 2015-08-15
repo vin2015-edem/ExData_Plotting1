@@ -1,0 +1,21 @@
+##Building the Plot4.png 
+En_path <- "D:/MOOC/Coursera_4_Exploratory Data Analysis/Course Project1/household_power_consumption.txt"
+En <- read.table(En_path, header = TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
+En2 <- En[En$Date %in% c("1/2/2007", "2/2/2007"), ]
+DT <- strptime(paste(En2$Date, En2$Time), "%d/%m/%Y %H:%M:%S")
+GAP <- as.numeric(En2$Global_active_power)
+GRP <- as.numeric(En2$Global_reactive_power)
+U <- as.numeric(En2$Voltage)
+SM1 <- as.numeric(En2$Sub_metering_1)
+SM2 <- as.numeric(En2$Sub_metering_2)
+SM3 <- as.numeric(En2$Sub_metering_3)
+png("D:/MOOC/Coursera_4_Exploratory Data Analysis/Course Project1/plot4.png", width=480, height=480)
+par("mfrow" = c(2, 2))
+plot(x=DT, y=GAP, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)", cex=.5)
+plot(x=DT, y=U, type = "l", xlab = "datetime", ylab = "Voltage")
+plot(x=DT, y=SM1, type = "l", xlab = "", ylab = "Energy sub metering")
+lines(x=DT, y=SM2, type = "l", col = "red")
+lines(x=DT, y=SM3, type = "l", col = "blue")
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty = 1, lwd = 2.5, col = c("black", "red", "blue"))
+plot(x=DT, y=GRP, type = "l", xlab = "datetime", ylab = "Global_reactive_power")
+dev.off()
