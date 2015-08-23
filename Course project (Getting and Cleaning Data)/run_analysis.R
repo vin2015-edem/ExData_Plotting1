@@ -87,4 +87,4 @@ P_mean <- filter(Features,grepl("mean\\(",Features$V2))
 P_std <- filter(Features,grepl("std",Features$V2))
 PP <- c(P_mean$V1,P_std$V1)
 SX2 <- SX[,PP]
-write.table(SX2, file = "D:/MOOC/Coursera_3_Getting and Cleaning Data/Course Project/rezults.csv", sep = ",",row.name=FALSE)
+write.table(SX2, file = "D:/MOOC/Coursera_3_Getting and Cleaning Data/Course Project/rezults.txt", sep = ",",row.name=FALSE)
